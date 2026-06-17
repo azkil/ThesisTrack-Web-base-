@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    overflow-x: hidden;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    max-width: 100%;
+  }
+
+  input,
+  select,
+  textarea {
+    @apply rounded-md border border-input bg-background text-sm text-foreground shadow-sm outline-none transition-colors placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-slate-400 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  button {
+    @apply rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  table {
+    @apply border-border;
+  }
+
+  th {
+    @apply text-xs font-semibold uppercase tracking-wide text-muted-foreground;
+  }
+
+  td {
+    @apply text-sm text-foreground;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid.grid-cols-2,
+  .grid.grid-cols-3,
+  .grid.grid-cols-4,
+  .grid.grid-cols-5,
+  .grid.grid-cols-6 {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .p-6,
+  .p-8 {
+    padding: 1rem !important;
+  }
+
+  .mt-8 {
+    margin-top: 1rem !important;
+  }
+
+  .w-64,
+  .w-80,
+  .w-96 {
+    width: 100% !important;
+  }
+
+  .max-w-md,
+  .max-w-2xl,
+  .max-w-3xl,
+  .max-w-4xl,
+  .max-w-5xl,
+  .max-w-6xl {
+    width: 100%;
+  }
+}
+
+@layer components {
+  .responsive-table {
+    @apply w-full text-sm text-left;
+  }
+
+  .responsive-table th,
+  .responsive-table td {
+    @apply align-top;
+  }
+
+  @media (max-width: 767px) {
+    .responsive-table,
+    .responsive-table thead,
+    .responsive-table tbody,
+    .responsive-table th,
+    .responsive-table td,
+    .responsive-table tr {
+      display: block;
+    }
+
+    .responsive-table thead {
+      @apply hidden;
+    }
+
+    .responsive-table tbody {
+      @apply space-y-3;
+    }
+
+    .responsive-table tr {
+      @apply rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden;
+    }
+
+    .responsive-table tr.bg-gray-50 {
+      background-color: rgb(249 250 251);
+    }
+
+    .responsive-table td {
+      @apply flex items-start justify-between gap-4 border-b border-gray-100 px-4 py-3 text-right;
+    }
+
+    .responsive-table td:last-child {
+      @apply border-b-0;
+    }
+
+    .responsive-table td::before {
+      content: attr(data-label);
+      @apply shrink-0 text-left text-xs font-semibold uppercase tracking-wide text-gray-500;
+    }
+
+    .responsive-table td.responsive-detail {
+      @apply block text-left;
+    }
+
+    .responsive-table td.responsive-detail::before {
+      content: "";
+      @apply hidden;
+    }
+  }
+}
